@@ -1,5 +1,6 @@
 const output = document.getElementById('output');
 const prompt = document.getElementById('prompt');
+const generateButton = document.getElementById('generate_button');
 
 const responses = [
   "Woof! That's a great question! Can I have a treat now?",
@@ -14,13 +15,15 @@ const responses = [
   "If you throw a ball, I'll think about your question while fetching it."
 ];
 
-document.getElementById('generate_button').addEventListener('click', function(e) {
-  e.preventDefault();
-
-  if (prompt.value === '') {
-    return;
+document.getElementById('prompt').addEventListener('input', function(event) {
+  if (event.target.value.length > 0) {
+    generateButton.disabled = false;
+  } else {
+    generateButton.disabled = true;
   }
+});
 
+document.getElementById('generate_button').addEventListener('click', function() {
   clearOutput();
   clearPrompt();
   generateResponse();
